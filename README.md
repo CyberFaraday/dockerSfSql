@@ -6,10 +6,10 @@ Services complémentaires : PHPMyAdmin / MailDev
 
 ## Installation  
   1. Cloner le dépôt git :  
-  `git clone https://github.com/nicolasvauche/docker_sf.git`  
+  `git clone https://github.com/CyberFaraday/dockerSfSql.git`  
 
   2. Dupliquer le fichier .env-sample et le renommer en .env :  
-  `cd docker_sf`  
+  `cd dockerSfSql`  
   `cp .env-sample .env`  
   Modifier ce fichier en renseignant vos informations  
 
