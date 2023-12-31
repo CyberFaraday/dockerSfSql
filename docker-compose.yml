@@ -5,7 +5,7 @@ services:
     container_name: "${DB_NAME}_mariadb"
     build:
       context: ./mariadb
-    environement:
+    environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER_NAME}
