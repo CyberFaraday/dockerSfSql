@@ -3,7 +3,7 @@ version: "3.8"
 services:
   db:
     container_name: "${DB_NAME}_mysql"
-    image: mysql:latest
+    image: mariadb:latest
     command:
       [
         "--character-set-server=utf8mb4",
