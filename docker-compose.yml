@@ -52,22 +52,15 @@ services:
       - "${DB_PORT}:3306"
 
   phpmyadmin:
-    container_name: "${DB_NAME}_phpmyadmin"
     image: phpmyadmin/phpmyadmin:latest
-    links:
-      - mariadb
-    depends_on:
-      - mariadb
     ports:
       - "${PHPMYADMIN_PORT}:80"
     environment:
-      PMA_ARBITRARY: 1
-      PMA_HOST: db
-      PMA_USER: ${DB_USER_NAME}
-      PMA_PASSWORD: ${DB_USER_PASSWORD}
-      UPLOAD_LIMIT: 20M
-    restart: always
-
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    depends_on:
+      - mariadb
+  
   maildev:
     container_name: "${DB_NAME}_maildev"
     image: maildev/maildev
