@@ -6,7 +6,7 @@ ENV GIT_USEREMAIL $GIT_USEREMAIL
 ENV GIT_USERNAME $GIT_USERNAME
 
 ARG CACHEBUST=1
-ENV NODE_VERSION=16
+ENV NODE_VERSION=20.10.0
 
 RUN apt update \
     && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip nano vim \
@@ -34,13 +34,16 @@ RUN apt install symfony-cli
 RUN git config --global user.email "${GIT_USEREMAIL}" \
     && git config --global user.name "${GIT_USERNAME}"
 
-RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - \
-    && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash 
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update \
-    && apt-get install -qq -y build-essential nodejs yarn npm
+    && apt-get install -qq -y build-essential yarn
 
 COPY php.ini /usr/local/etc/php/php.ini
 COPY .bashrc /root/.bashrc
+
+RUN echo "source /root/.bashrc && nvm install $NODE_VERSION"
 
 WORKDIR /var/www/app
