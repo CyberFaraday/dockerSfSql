@@ -1,21 +1,30 @@
 version: "3.8"
-
 services:
+  db:
+    hostname: "${DB_NAME}_mariadb"
+    image: mariadb:11.1
+    container_name: "${DB_NAME}_mariadb"
+    networks:
+      - backend
+    command:
+      [
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_general_ci",
+        "--default-authentication-plugin=mysql_native_password",
+      ]
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER_NAME}
+      MYSQL_PASSWORD: ${DB_USER_PASSWORD}
 
-  nginx:
-    container_name: "${DB_NAME}_nginx"
-    image: nginx:stable-alpine
     ports:
-      - "${HTTP_PORT}:80"
-    volumes:
-      - ./app:/var/www/app
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - php
-      - mariadb
+      - "${DB_PORT}:3306"
+
 
   php:
     container_name: "${DB_NAME}_php"
+    hostname: "${DB_NAME}_php"
     build:
       context: ./php
       args:
@@ -29,45 +38,39 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     depends_on:
-      - mariadb
+      - db
 
-  mariadb:
-    container_name: "${DB_NAME}_mariadb"
-    image: mariadb:11.1
-    command:
-      [
-        "--character-set-server=utf8mb4",
-        "--collation-server=utf8mb4_general_ci",
-        "--default-authentication-plugin=mysql_native_password",
-      ]
-    restart: always
-    volumes:
-      - mariadb-data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER_NAME}
-      MYSQL_PASSWORD: ${DB_USER_PASSWORD}
+  nginx:
+    container_name: "${DB_NAME}_nginx"
+    hostname: "${DB_NAME}_nginx"
+    image: nginx:stable-alpine
     ports:
-      - "${DB_PORT}:3306"
+      - "${HTTP_PORT}:80"
+    volumes:
+      - ./app:/var/www/app
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - db
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+    hostname: "${DB_NAME}_phpmyadmin"
+    container_name: "${DB_NAME}_phpmyadmin"
+    image: phpmyadmin/phpmyadmin
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER_NAME}
+      MYSQL_PASSWORD: ${DB_USER_PASSWORD}
+    networks:
+      - backend
+      - frontend
+    links:
+      - db:db
+    depends_on:
+      - db
     ports:
       - "${PHPMYADMIN_PORT}:80"
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mariadb
-    depends_on:
-      - mariadb
-  
-  maildev:
-    container_name: "${DB_NAME}_maildev"
-    image: maildev/maildev
-    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
-    ports:
-      - "${MAILDEV_PORT}:80"
-    restart: always
 
-volumes:
-  mariadb-data:
+networks:
+  backend:
+  frontend:
