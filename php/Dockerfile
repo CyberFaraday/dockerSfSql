@@ -1,4 +1,4 @@
-FROM php:8.3-fpm
+kFROM php:8.3-fpm
 
 ARG GIT_USEREMAIL
 ARG GIT_USERNAME
@@ -10,7 +10,7 @@ ENV NODE_VERSION=16
 
 RUN apt update \
     && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip nano vim \
-    && docker-php-ext-install intl opcache pdo pdo_mysql exif \
+    && docker-php-ext-install intl opcache pdo php-sqlite3 pdo_mysql php-pgsql exif \
     && pecl install apcu \
     && docker-php-ext-enable apcu \
     && docker-php-ext-configure zip \
