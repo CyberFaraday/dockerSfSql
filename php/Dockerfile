@@ -1,4 +1,4 @@
-kFROM php:8.3-fpm
+FROM php:8.3-fpm
 
 ARG GIT_USEREMAIL
 ARG GIT_USERNAME
