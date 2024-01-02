@@ -75,4 +75,5 @@ services:
     restart: always
 
 
-  frontend:
+volumes:
+  db_data:
