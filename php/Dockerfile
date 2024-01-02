@@ -34,7 +34,6 @@ RUN apt install symfony-cli
 RUN git config --global user.email "${GIT_USEREMAIL}" \
     && git config --global user.name "${GIT_USERNAME}"
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash 
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
@@ -44,6 +43,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 COPY php.ini /usr/local/etc/php/php.ini
 COPY .bashrc /root/.bashrc
 
-RUN echo "source /root/.bashrc && nvm install $NODE_VERSION"
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
+    && echo "source /root/.bashrc && nvm install $NODE_VERSION"
 
 WORKDIR /var/www/app
