@@ -19,6 +19,7 @@ services:
       - "${DB_PORT}:3306"
     volumes:
       - db_data:/var/lib/mysql
+    restart: always
 
   php:
     container_name: "${DB_NAME}_php"
