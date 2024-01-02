@@ -4,8 +4,6 @@ services:
     hostname: "${DB_NAME}_mariadb"
     image: mariadb:11.1
     container_name: "${DB_NAME}_mariadb"
-    networks:
-      - backend
     command:
       [
         "--character-set-server=utf8mb4",
@@ -17,7 +15,6 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER_NAME}
       MYSQL_PASSWORD: ${DB_USER_PASSWORD}
-
     ports:
       - "${DB_PORT}:3306"
 
@@ -61,9 +58,6 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_USER: ${DB_USER_NAME}
       MYSQL_PASSWORD: ${DB_USER_PASSWORD}
-    networks:
-      - backend
-      - frontend
     links:
       - db:db
     depends_on:
