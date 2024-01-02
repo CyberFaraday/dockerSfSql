@@ -6,7 +6,7 @@ ENV GIT_USEREMAIL $GIT_USEREMAIL
 ENV GIT_USERNAME $GIT_USERNAME
 
 ARG CACHEBUST=1
-ENV NODE_VERSION=20.10.0
+ENV NODE_VERSION=--lts
 
 RUN apt update \
     && apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip nano vim \
