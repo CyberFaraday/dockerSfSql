@@ -3,7 +3,7 @@ version: "3.8"
 services:
   db:
     image: postgres
-    container_name: "${DB_NAME}_postgresql"
+    container_name: "${DB_NAME}_pgsql"
     restart: always
     environment:
       POSTGRES_INITDB_ARGS: "--auth-host=md5 --auth-local=md5"
