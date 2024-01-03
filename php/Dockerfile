@@ -59,7 +59,7 @@ RUN  wget http://php.net/distributions/php-8.3.1.tar.gz \
     && phpize \
     && ./configure -with-pgsql=/usr/lib/postgresql/15/bin \
     && make && mv modules/pdo_pgsql.so $PHP_EXT_DIR \
-    && rm -r /root/*
+    && rm -r /root/php-8.3.1
 
 
 WORKDIR /var/www/app
