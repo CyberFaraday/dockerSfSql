@@ -17,6 +17,7 @@ services:
       MYSQL_PASSWORD: ${DB_USER_PASSWORD}
     ports:
       - "${DB_PORT}:3306"
+    restart: always
     
 
   php:
