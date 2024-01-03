@@ -1,4 +1,4 @@
-FROM php:8.3-fpm
+FROM php:8.2-fpm
 
 ARG GIT_USEREMAIL
 ARG GIT_USERNAME
@@ -38,7 +38,7 @@ RUN git config --global user.email "${GIT_USEREMAIL}" \
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update \
-    && apt-get install -qq -y build-essential yarn
+    && apt-get install -qq -y build-essential yarn php-pdo-pgsql
 
 COPY php.ini /usr/local/etc/php/php.ini
 COPY .bashrc /root/.bashrc
