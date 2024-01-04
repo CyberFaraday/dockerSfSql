@@ -16,20 +16,26 @@ RUN apt update \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip
 
+
 RUN apt-get update && \
     apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev --no-install-recommends --fix-missing\
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/\
     && docker-php-ext-install gd
+
+
 
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && echo "xdebug.mode=debug,coverage" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 
 RUN curl -sS 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
 RUN apt install symfony-cli
+
 
 RUN git config --global user.email "${GIT_USEREMAIL}" \
     && git config --global user.name "${GIT_USERNAME}"
@@ -39,12 +45,6 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update \
     && apt-get install -qq -y build-essential yarn wget
-
-COPY php.ini /usr/local/etc/php/php.ini
-COPY .bashrc /root/.bashrc
-
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
-    && echo "source /root/.bashrc && nvm install $NODE_VERSION"
 
 RUN apt-get install -y postgresql postgresql-contrib postgresql-server-dev-15 
 
@@ -59,7 +59,19 @@ RUN  wget http://php.net/distributions/php-8.3.1.tar.gz \
     && phpize \
     && ./configure -with-pgsql=/usr/lib/postgresql/15/bin \
     && make && mv modules/pdo_pgsql.so $PHP_EXT_DIR \
-    && rm -r /root/*
+    && rm -r /root/php-8.3.1
+
+#COPY docker-php-ext-pdo_pgsql.ini /usr/local/etc/php/conf.d/docker-php-ext-pdo_pgsql.ini
+RUN touch /usr/local/etc/php/conf.d/docker-php-ext-pdo_pgsql.ini
+RUN echo "extension=pdo_pgsql.so" > /usr/local/etc/php/conf.d/docker-php-ext-pdo_pgsql.ini
+COPY php.ini /usr/local/etc/php/php.ini
+COPY .bashrc /root/.bashrc
+
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
+    && echo "source /root/.bashrc && nvm install $NODE_VERSION"
+
+
 
 
 WORKDIR /var/www/app
