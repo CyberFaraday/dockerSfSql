@@ -46,9 +46,8 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get update \
     && apt-get install -qq -y build-essential yarn wget
 
-RUN apt-get install -y postgresql postgresql-contrib postgresql-server-dev-15 
-
 #for postgresql php drivers
+RUN apt-get install -y postgresql postgresql-contrib postgresql-server-dev-15 
 RUN  wget http://php.net/distributions/php-8.3.1.tar.gz \
     && PHP_EXT_DIR=$( php-config --extension-dir ) \
     && tar -xvzf php-8.3.1.tar.gz -C /root \
@@ -59,15 +58,15 @@ RUN  wget http://php.net/distributions/php-8.3.1.tar.gz \
     && phpize \
     && ./configure -with-pgsql=/usr/lib/postgresql/15/bin \
     && make && mv modules/pdo_pgsql.so $PHP_EXT_DIR \
-    && rm -r /root/php-8.3.1
-
-#COPY docker-php-ext-pdo_pgsql.ini /usr/local/etc/php/conf.d/docker-php-ext-pdo_pgsql.ini
+    && rm -r /root/php-8.3.1 \
+    && apt-get remove --purge postgresql postgresql-contrib postgresql-server-dev-15 wget build-essential g++
 RUN touch /usr/local/etc/php/conf.d/docker-php-ext-pdo_pgsql.ini
 RUN echo "extension=pdo_pgsql.so" > /usr/local/etc/php/conf.d/docker-php-ext-pdo_pgsql.ini
+
 COPY php.ini /usr/local/etc/php/php.ini
 COPY .bashrc /root/.bashrc
 
-
+#install nvm & the last lts node version
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash \
     && echo "source /root/.bashrc && nvm install $NODE_VERSION"
 
