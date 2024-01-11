@@ -58,8 +58,8 @@ RUN  wget http://php.net/distributions/php-8.3.1.tar.gz \
     && phpize \
     && ./configure -with-pgsql=/usr/lib/postgresql/15/bin \
     && make && mv modules/pdo_pgsql.so $PHP_EXT_DIR \
-    && rm -r /root/php-8.3.1 \
-    && apt-get remove -y --purge postgresql postgresql-contrib postgresql-server-dev-15 wget build-essential g++
+    && rm -r /root/php-8.3.1
+    
 RUN touch /usr/local/etc/php/conf.d/docker-php-ext-pdo_pgsql.ini
 RUN echo "extension=pdo_pgsql.so" > /usr/local/etc/php/conf.d/docker-php-ext-pdo_pgsql.ini
 
