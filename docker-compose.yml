@@ -28,7 +28,7 @@ services:
       args:
         GIT_USEREMAIL: ${GIT_USEREMAIL}
         GIT_USERNAME: ${GIT_USERNAME}
-    image: "docker_${DB_NAME}_php"
+    image: "php_node"
     ports:
       - "${PHP_PORT}:9000"
     volumes:
