@@ -14,7 +14,7 @@ Additional services: PHPMyAdmin / MailDev
 
   2. for a MySql based environment, stay on the main branch which is the same as the mysql branch, or switch to the mysql branch:
   `git checkout mysql`
- **ndo not switch to another branch from now on in this directory!**
+ **do not switch to another branch from now on in this directory!**
 
 
   4. Duplicate the .env-sample file and rename it to .env :  
