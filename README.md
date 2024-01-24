@@ -12,7 +12,7 @@ Additional services: PHPMyAdmin / MailDev
   cd into this directory and enter the command:
   `git clone https://github.com/CyberFaraday/dockerSfSql.git .`
 
-  2. for a MySql based environment, stay on the main branch which is the same as the mysql branch, or switch to the mysql branch:
+  2. For use with MariaDB  switch to the MariaDB branch:
   `git checkout mariadb`
  **do not switch to another branch from now on in this directory!**
 
