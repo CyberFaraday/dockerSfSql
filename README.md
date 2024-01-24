@@ -24,16 +24,22 @@ Additional services: PHPMyAdmin / MailDev
   `docker compose up -d --build`
   It may take some time when first installing the required docker images. 
 
-  7. quand la précédente  opération est terminée, pour entrer dans le containeur principal (le container php-node) entrez la commande :  
-  `docker compose exec php /bin/bash`  
+  7. when the previous operation is completed, to enter the main container (the php-node container) enter the command :  
+  `docker compose exec php /bin/bash`
 
-  8. Tester le Symfony CLI :  
+  8. For a simple PHP project, since the the Nginx server points to the "public" directory,
+  so create a "public" directory in the "app" directory of your project working directory, this is where you will place your PHP files
+
+  9. For a Symfony project, Test the Symfony CLI :  
   `symfony check:requirements`  
 
 ---  
 
-## Installer un projet Symfony :  
-Toutes les commandes sont exécutées dans le terminal de votre conteneur principal :  
+## Install a Symfony project :  
+**Note :To install a Symfony project, the "app" directory must be completely empty, so delete the delete-me.txt file and the possible "public" test folder if it is present:**
+`rm delete-me.txt`
+`rm -r public`
+All commands are now executed in the terminal of your main container, i.e. the PHP-NodeJS container :  
 - `php bin/console […]`  
 - `git […]`  
 - `npm […]`  
