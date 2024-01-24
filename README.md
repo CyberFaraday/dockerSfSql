@@ -1,25 +1,33 @@
-# Docker & Symfony + MySQL or PostgreSQL 
-Installation d'un environnement NginX / MySQL / PHP8 / NodeJS / Yarn / Symfony CLI avec Docker.  
-Services complémentaires : PHPMyAdmin / MailDev  
+# Docker & Symfony + MySQL 
+Installation of an NginX / MySQL / PHP8 / NodeJS / Yarn / Symfony CLI environment with Docker.
+Additional services: PHPMyAdmin / MailDev
+   
 
 ---  
 
 ## Installation  
-  1. Cloner le dépôt git :  
-  `git clone https://github.com/CyberFaraday/dockerSfSql.git`  
+  1. Clone the git repository :  
+  `git clone https://github.com/CyberFaraday/dockerSfSql.git`
+  or create a working directory with the name of your project,
+  cd into this directory and enter the command:
+  `git clone https://github.com/CyberFaraday/dockerSfSql.git .`
 
-  2. Dupliquer le fichier .env-sample et le renommer en .env :  
-  `cd dockerSfSql`  
+  2. for a MySql based environment, stay on the main branch which is the same as the mysql branch, or switch to the mysql branch:
+  `git checkout mysql`
+
+  4. Duplicate the .env-sample file and rename it to .env :  
+  `cd dockerSfSql` or cd into your custom project directory
   `cp .env-sample .env`  
-  Modifier ce fichier en renseignant vos informations  
+  Edit this file by providing your informations
 
-  3. Monter les conteneurs Docker :  
-  `docker-compose up -d --build`  
+  5. Mount Docker containers :  
+  `docker compose up -d --build`
+  It may take some time when first installing the required docker images. 
 
-  4. Ouvrir un autre onglet de votre terminal, et accéder à la console de votre conteneur principal :  
-  `docker-compose exec php /bin/bash`  
+  7. quand la précédente  opération est terminée, pour entrer dans le containeur principal (le container php-node) entrez la commande :  
+  `docker compose exec php /bin/bash`  
 
-  5. Tester le Symfony CLI :  
+  8. Tester le Symfony CLI :  
   `symfony check:requirements`  
 
 ---  
