@@ -1,6 +1,6 @@
 # Docker & Symfony + PostgreSQL
 Installation of an NginX / PostgreSQL / PHP8 / NodeJS / Yarn / Symfony CLI environment with Docker.
-Additional services: PHPMyAdmin / MailDev
+Additional services: pgAdmin / Adminer / MailDev
    
 
 ---  
