@@ -20,7 +20,7 @@ Additional services: PHPMyAdmin / MailDev
   4. Duplicate the .env-sample file and rename it to .env :  
   `cd dockerSfSql` or cd into your custom project directory
   `cp .env-sample .env`  
-  Edit this file by providing your informations
+  Edit this file by providing your informations...
 
   5. Mount Docker containers :  
   `docker compose up -d --build`
