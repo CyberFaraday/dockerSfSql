@@ -39,14 +39,11 @@ Additional services: PHPMyAdmin / MailDev
 **Note :To install a Symfony project, the "app" directory must be completely empty, so delete the delete-me.txt file and the possible "public" test folder if it is present:**
 `rm delete-me.txt`
 `rm -r public`
-All commands are now executed in the terminal of your main container, i.e. the PHP-NodeJS container :  
+All commands are now executed in the terminal of your main container, i.e. the PHP-Node container :  
 - `php bin/console […]`  
 - `git […]`  
 - `npm […]`  
 - `yarn […]`  
-
-**Note : supprimer le fichier delete-me.txt avant d'initialiser un projet SF**  
-`rm delete-me.txt`  
-
-- Latest : `symfony new --full .`  
-- LTS : `composer create-project symfony/website-skeleton:"^5.4" .`  
+ 
+- To use the LTS version of Symfony, enter the command: `symfony new my_project_directory --version=lts --webapp .`
+this is just an example. 
