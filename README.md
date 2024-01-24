@@ -48,5 +48,5 @@ All commands are now executed in the terminal of your main container, i.e. the P
 - `yarn […]`  
  
 - To use the LTS version of Symfony, cd into the "app" directory of your project,
-and enter the command: `symfony new . --version=lts --webapp .`
+and enter the command: `symfony new . --version=lts --webapp`
 this is just an example. 
