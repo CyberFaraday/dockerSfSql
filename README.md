@@ -1,6 +1,6 @@
 # Docker & Symfony + MySQL or Mariadb or PostgreSQL
-Installation of an NginX / MySQL / PHP8 / NodeJS / Yarn / Symfony CLI environment with Docker.
-Additional services: PHPMyAdmin / MailDev
+Installation of an NginX / SQL / PHP8 / NodeJS / Yarn / Symfony CLI environment with Docker.
+Additional services: PHPMyAdmin / MailDev / Adminer /pgAdmin
    
 
 ---  
