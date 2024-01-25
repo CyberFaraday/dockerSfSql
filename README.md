@@ -16,7 +16,7 @@ Additional services: PHPMyAdmin / MailDev
   3. for a MySql based environment, stay on the main branch which is based on MySql, you don't need to do anything at this point.
   For a MariaDb environment, switch to the mariadb branch: `git checkout mariadb`.
   For a PostgreSQL environment, switch to the postgresql branch: `git checkout postgresql`.
- **once your choice is made, do not switch to another branch IN THIS DIRECTORY during development!**
+  **Once your choice is made, do not switch to another branch IN THIS DIRECTORY during development!**
 
 
   4. Duplicate the .env-sample file and rename it to .env :  
