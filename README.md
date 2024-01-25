@@ -1,4 +1,4 @@
-# Docker & Symfony + MySQL 
+# Docker & Symfony + MySQL or Mariadb or PostgreSQL
 Installation of an NginX / MySQL / PHP8 / NodeJS / Yarn / Symfony CLI environment with Docker.
 Additional services: PHPMyAdmin / MailDev
    
@@ -7,12 +7,13 @@ Additional services: PHPMyAdmin / MailDev
 
 ## Installation  
   1. Clone the git repository :  
-  `git clone https://github.com/CyberFaraday/dockerSfSql.git`
-  or create a working directory with the name of your project,
-  cd into this directory and enter the command:
+  `git clone https://github.com/CyberFaraday/dockerSfSql.git` ,
+  `cd dockerSfSql`
+  or create a custom working directory with the name of your project,
+  go to this directory and  run the command:
   `git clone https://github.com/CyberFaraday/dockerSfSql.git .`
 
-  2. for a MySql based environment, stay on the main branch which is based on MySql, you don't need to do anything at this point.
+  3. for a MySql based environment, stay on the main branch which is based on MySql, you don't need to do anything at this point.
   For a MariaDb environment, switch to the mariadb branch: `git checkout mariadb`.
   For a PostgreSQL environment, switch to the postgresql branch: `git checkout postgresql`.
  **once your choice is made, do not switch to another branch IN THIS DIRECTORY during development!**
@@ -31,7 +32,7 @@ Additional services: PHPMyAdmin / MailDev
   `docker compose exec php /bin/bash`
 
   8. For a simple PHP project, since the the Nginx server points to the "public" directory,
-  so create a "public" directory in the "app" directory of your project working directory, this is where you will place your PHP files
+  so create a "public" directory in the "app" directory of your project working directory, this is where you will place your PHP files.
 
   9. For a Symfony project, Test the Symfony CLI :  
   `symfony check:requirements`  
