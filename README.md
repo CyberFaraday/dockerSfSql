@@ -12,10 +12,10 @@ Additional services: PHPMyAdmin / MailDev
   cd into this directory and enter the command:
   `git clone https://github.com/CyberFaraday/dockerSfSql.git .`
 
-  2. for a MySql based environment, stay on the main branch which is the same as the mysql branch, or switch to the mysql branch:
-  `git checkout mysql`, for a MariaDb environment, switch to the mariadb branch: `git checkout mariadb`,
-   for a PostgreSQL environment, switch to the postgresql branch: `git checkout postgresql`.
- **once you have made your choice, do not switch to another branch from now on in this directory!**
+  2. for a MySql based environment, stay on the main branch which is based on MySql.
+  For a MariaDb environment, switch to the mariadb branch: `git checkout mariadb`.
+  For a PostgreSQL environment, switch to the postgresql branch: `git checkout postgresql`.
+ **once your choice is made, do not switch to another branch in this directory during development!**
 
 
   4. Duplicate the .env-sample file and rename it to .env :  
