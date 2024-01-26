@@ -37,6 +37,7 @@ services:
   nginx:
     image: nginx:stable-alpine
     container_name: "${DB_NAME}_nginx"
+    restart: always
     ports:
       - "${HTTP_PORT}:80"
     volumes:
@@ -45,7 +46,6 @@ services:
     depends_on:
       - php
       - db
-    restart: always
 
   pgadmin:
     image: dpage/pgadmin4:latest
